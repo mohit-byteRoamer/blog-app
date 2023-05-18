@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.css";
+
 const blogListCard = ({ image, title, description }) => {
   const Image = "https:" + image;
   return (

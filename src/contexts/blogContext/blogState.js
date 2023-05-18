@@ -1,9 +1,9 @@
-import React, { Children } from "react";
+import React from "react";
 import BlogContext from "./blogContext";
 import axios from "axios";
 
 const BlogState = (props) => {
-  const [blogData, setBlogData] = useState([]);
+  const [blogData, setBlogData] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -11,6 +11,8 @@ const BlogState = (props) => {
         const response = await axios.get(
           "https://api.theinnerhour.com/v1/customers/resources/articles/list?page=1&limit=10"
         );
+        console.log("Data......");
+        console.log(response.data.data);
         setBlogData(response.data.data);
       } catch (error) {
         console.log(error);
@@ -20,7 +22,7 @@ const BlogState = (props) => {
   }, []);
   return (
     <BlogContext.Provider value={{ blogData }}>
-      {props.Children}
+      {props.children}
     </BlogContext.Provider>
   );
 };
