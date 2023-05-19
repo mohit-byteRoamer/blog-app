@@ -1,14 +1,21 @@
 import React from "react";
+import BlogContext from "../../contexts/blogContext/blogContext";
 import "./index.css";
-const blogListCard = ({ image, title, description }) => {
+
+const BlogListCard = ({ image, title, description, onClick }) => {
+  const blogContext = React.useContext(BlogContext);
+  const { modalSlug, blogModalHandler } = blogContext;
+
   const Image = "https:" + image;
   return (
-    <div className="blog-card">
+    <div onClick={onClick} className="blog-card">
       <img src={Image} alt="Blog Thumbnail" className="blog-card__image" />
-      <h2 className="blog-card__title">{title}</h2>
-      <p className="blog-card__description">{description}</p>
+      <div className="textContent">
+        <h2 className="blog-card__title">{title}</h2>
+        <p className="blog-card__description">{description}</p>
+      </div>
     </div>
   );
 };
 
-export default blogListCard;
+export default BlogListCard;

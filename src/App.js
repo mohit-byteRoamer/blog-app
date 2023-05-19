@@ -1,14 +1,20 @@
+import React from "react";
 import "./App.css";
 import BlogListing from "./components/module/blogListing";
-import BlogState from "./contexts/blogContext/blogState";
+import BlogListModal from "./components/widgets/blogListModal";
+import BlogContext from "./contexts/blogContext/blogContext.js";
+import Header from "./components/widgets/header/header";
 function App() {
-
+  const blogContext = React.useContext(BlogContext);
+  let { blogModal } = blogContext;
   return (
-    <BlogState>
-      <div className="App">
+    <div className="App">
+      <Header />
+      <div className="appContent">
         <BlogListing />
+        {blogModal && <BlogListModal />}
       </div>
-    </BlogState>
+    </div>
   );
 }
 
