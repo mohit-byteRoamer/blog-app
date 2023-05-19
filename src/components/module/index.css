@@ -1,5 +1,27 @@
-.blogListContainer {
+.blogListingContainer {
   width: 80%;
+}
+
+.blogListHeader {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+  justify-content: space-between;
+}
+
+.searchAbleHeader{
+  display: flex;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+  justify-content: flex-end;
+}
+
+.AllArticlesText {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.content {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

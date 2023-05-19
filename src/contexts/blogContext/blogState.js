@@ -6,6 +6,7 @@ const BlogState = (props) => {
   const [blogData, setBlogData] = useState([]);
   const [blogModal, setBlogModal] = useState(false);
   const [blogModalData, setBlogModalData] = useState(null);
+  const [searchRequest, setSearchRequest] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +44,19 @@ const BlogState = (props) => {
     }
   };
 
+  const searchBlogHandler = (searchRequest) => {
+    setSearchRequest(searchRequest);
+  };
+  const getItemsByTitle = () => {
+    const searchWords = searchRequest.trim().toLowerCase().split(/\s+/);
+    return blogData.filter((item) => {
+      const itemTitle = item.title.toLowerCase();
+      return searchWords.every((word) => itemTitle.includes(word));
+    });
+  };
+
+  const searchBlog = getItemsByTitle();
+  console.log(searchBlog);
   return (
     <BlogContext.Provider
       value={{
@@ -51,6 +65,10 @@ const BlogState = (props) => {
         blogModal,
         fetchBlogDetails,
         blogModalHandler,
+        searchRequest,
+        setSearchRequest,
+        searchBlogHandler,
+        searchBlog,
       }}
     >
       {props.children}
