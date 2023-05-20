@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import BlogListing from "./components/module/blogListing";
-import BlogListModal from "./components/widgets/blogListModal";
+import BlogListModal from "./components/widgets/blog-card-modal/blogListModal.js";
 import BlogContext from "./contexts/blogContext/blogContext.js";
 import Header from "./components/widgets/header/header";
 function App() {

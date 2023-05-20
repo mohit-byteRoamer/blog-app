@@ -7,15 +7,18 @@ const BlogState = (props) => {
   const [blogModal, setBlogModal] = useState(false);
   const [blogModalData, setBlogModalData] = useState(null);
   const [searchRequest, setSearchRequest] = useState("");
-
+  const [loding, setLoding] = useState(false);
   useEffect(() => {
+    setLoding(true);
     const fetchData = async () => {
       try {
         const response = await axios.get(
           "https://api.theinnerhour.com/v1/customers/resources/articles/list?page=1&limit=10"
         );
         setBlogData(response.data.data);
+        setLoding(false);
       } catch (error) {
+        setLoding(false);
         console.log(error);
       }
     };
@@ -28,9 +31,10 @@ const BlogState = (props) => {
       const response = await axios.get(
         `https://api.theinnerhour.com/v1/blogdetail/${slug}`
       );
-      console.log(response.data.blog.body);
+      setLoding(false);
       setBlogModalData(response.data);
     } catch (error) {
+      setLoding(false);
       console.log(error);
     }
   };
@@ -40,6 +44,7 @@ const BlogState = (props) => {
     if (blogModal) {
       setBlogModalData(null);
     } else {
+      setLoding(true);
       fetchBlogDetails(slug);
     }
   };
@@ -61,6 +66,7 @@ const BlogState = (props) => {
     <BlogContext.Provider
       value={{
         blogData,
+        loding,
         blogModalData,
         blogModal,
         fetchBlogDetails,
